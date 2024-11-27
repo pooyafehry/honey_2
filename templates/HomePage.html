@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <style>
+        body {
+            background-color: #FFEB3B; /* Honey yellow */
+            color: #3E2723; /* Dark brown */
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+        .container {
+            text-align: center;
+            background-color: #FFF8E1; /* Light honey color */
+            padding: 60px;
+            border: 2px solid #FFA000; /* Honey gold */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+        }
+        .button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #FFA000; /* Honey gold */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+        .button:hover {
+            background-color: #FFEB3B; /* Honey yellow */
+            color: #3E2723; /* Dark brown */
+        }
+        .hexagon {
+            width: 100px;
+            height: 55px;
+            background-color: #FFA000;
+            margin: 27.5px 0;
+            position: relative;
+            display: inline-block;
+        }
+        .hexagon:before,
+        .hexagon:after {
+            content: "";
+            position: absolute;
+            width: 0;
+            border-left: 50px solid transparent;
+            border-right: 50px solid transparent;
+        }
+        .hexagon:before {
+            bottom: 100%;
+            border-bottom: 27.5px solid #FFA000;
+        }
+        .hexagon:after {
+            top: 100%;
+            border-top: 27.5px solid #FFA000;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>مجموعه عسل فهری</h1>
+        <div class="hexagon"></div>
+        <p>عسل مورد ذأقه خود را در کندوی ما پیدا میکنید</p>
+        <div class="hexagon"></div>
+        <br>
+        <br>
+        <a href="{% url 'category_list' %}" class="button">دیدن محصولات</a>
+        <br>
+        <br>
+        <br>
+        <br>
+        <a href="{% url 'login' %}" class="button">ورود</a>
+        <br>
+        <br>
+        <br>
+        <br>
+        <a href="{% url 'register' %}" class="button">ثبت نام</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            background-color: #FFEB3B; /* Honey yellow */
+            color: #3E2723; /* Dark brown */
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            background-color: #FFF8E1; /* Light honey color */
+            padding: 40px;
+            border: 2px solid #FFA000; /* Honey gold */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-container {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #FFA000; /* Honey gold */
+            border-radius: 5px;
+            background-color: #FFF8E1; /* Light honey color */
+            color: #3E2723; /* Dark brown */
+        }
+        button {
+            background-color: #FFA000; /* Honey gold */
+            color: #FFF8E1; /* Light honey color */
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #FFEB3B; /* Honey yellow */
+            color: #3E2723; /* Dark brown */
+        }
+        .alert {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 5px;
+            color: #3E2723; /* Dark brown */
+            background-color: #FFF8E1; /* Light honey color */
+            border: 1px solid #FFA000; /* Honey gold */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1> خوش آمدید</h1>
+        {% if messages %}
+            <div>
+                {% for message in messages %}
+                    <div class="alert {{ message.tags }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        <div class="form-container">
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

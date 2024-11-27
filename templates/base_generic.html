@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Site{% endblock %}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #FFF8E1; /* Light honey color */
+            color: #3E2723; /* Dark brown */
+        }
+        header {
+            background-color: #FFEB3B; /* Honey yellow */
+            padding: 10px;
+            text-align: center;
+        }
+        nav {
+            margin: 10px;
+        }
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #3E2723; /* Dark brown */
+        }
+        main {
+            margin: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .container {
+            text-align: center;
+            background-color: #FFEB3B; /* Honey yellow */
+            padding: 20px;
+            border: 2px solid #FFA000; /* Honey gold */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+        .category-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .category-list li {
+            margin: 10px 0;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #FFA000; /* Honey gold */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .button:hover {
+            background-color: #FFEB3B; /* Honey yellow */
+            color: #3E2723; /* Dark brown */
+        }
+        footer {
+            background-color: #FFA000; /* Honey gold */
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>FEHREE HONEY</h1>
+    </header>
+    <nav>
+        <a href="{% url 'home_page' %}">صحفه اصلی</a>
+        
+    </nav>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+    <footer>
+        <p>برای اطلاعات بیشتر با شماره های زیر تماس بگیرید &copy; 2024</p>
+        <p>09307737437</p>
+    </footer>
+</body>
+</html>

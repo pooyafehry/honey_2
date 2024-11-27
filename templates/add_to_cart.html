@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add to Cart</title>
+    <style>
+        /* Honey theme styles */
+        body {
+            background-color: #FFEB3B; /* Honey yellow */
+            color: #3E2723; /* Dark brown */
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #FFF8E1; /* Light honey color */
+            padding: 20px;
+            border: 2px solid #FFA000; /* Honey gold */
+            border-radius: 10px;
+            text-align: center;
+        }
+        input, button {
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #FFA000; /* Honey gold */
+            border-radius: 5px;
+            background-color: #FFF8E1; /* Light honey color */
+            color: #3E2723; /* Dark brown */
+        }
+        button {
+            background-color: #FFA000; /* Honey gold */
+            color: #FFF8E1; /* Light honey color */
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #FFEB3B; /* Honey yellow */
+            color: #3E2723; /* Dark brown */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Add to Cart</h1>
+        <p>Category: {{ category.name }}</p>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Add to Cart</button>
+        </form>
+        <a href="{% url 'cart_detail' %}">View Cart</a>
+    </div>
+</body>
+</html>

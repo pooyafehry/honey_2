@@ -1,0 +1,25 @@
+{% extends "base_generic.html" %}
+
+{% block title %}Categories{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>محصولات</h1>
+    <ul class="category-list">
+        {% for category in categories %}
+            <li>
+                {{ category.name }} - 
+                <a href="{% url 'category_detail' category.pk %}">جزییات محصول</a> <!-- Ensure this is correct -->
+                <form action="{% url 'add_to_cart' category.pk %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit">افزودن به سبد خرید</button>
+                </form>
+                <form action="{% url 'remove_from_cart' category.pk %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit">حذف از سبد خرید</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

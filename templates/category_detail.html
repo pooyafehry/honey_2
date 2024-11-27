@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Category Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #FFF8E1; /* Light honey color */
+            color: #3E2723; /* Dark brown */
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 2px solid #FFA000; /* Honey gold */
+            border-radius: 10px;
+            background-color: #FFEB3B; /* Honey yellow */
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #FFA000; /* Honey gold */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            margin-top: 10px;
+        }
+        .button:hover {
+            background-color: #FFEB3B; /* Honey yellow */
+            color: #3E2723; /* Dark brown */
+        }
+        .cart-count {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #3E2723; /* Dark brown */
+        }
+        .comments {
+            margin-top: 30px;
+        }
+        .comment {
+            border-top: 1px solid #FFA000; /* Honey gold */
+            padding: 10px 0;
+        }
+        .category-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>{{ category.name }}</h1>
+        {% if category.image %}
+            <img src="{{ category.image.url }}" alt="{{ category.name }}" class="category-image">
+        {% else %}
+            <p>No image available</p>
+        {% endif %}
+        <p><strong>توضیحات:</strong> {{ category.description }}</p>
+        <p><strong>قیمت:</strong> ${{ category.price }}</p>
+        <a href="{% url 'home_page' %}" class="button">صفحه اصلی</a>
+        <form action="{% url 'add_to_cart' category.pk %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="button">اضافه به سبد خرید</button>
+        </form>
+        <form action="{% url 'remove_from_cart' category.pk %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="button">حذف از سبد خرید</button>
+        </form>
+        <div class="cart-count">
+            {% if user.is_authenticated %}
+                Items in cart: {{ cart_count }} <!-- Display the cart item count -->
+                {% for item in cart_items %}
+                    <p>{{ item.category.name }} (Price: ${{ item.price }}): {{ item.quantity }}</p> <!-- Show the chosen item, price, and quantity -->
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="comments">
+            <h2>نظرات</h2>
+            {% for comment in comments %}
+                <div class="comment">
+                    <p><strong>{{ comment.user.username }}</strong>:</p>
+                    <p>{{ comment.text }}</p>
+                    <p><small>{{ comment.created_at }}</small></p>
+                </div>
+            {% endfor %}
+        </div>
+        {% if user.is_authenticated %}
+            <form action="" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="button">ارسال نظر</button>
+            </form>
+        {% else %}
+            <p>You must be logged in to post a comment.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
